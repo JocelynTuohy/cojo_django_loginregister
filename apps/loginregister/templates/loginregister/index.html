@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Login & Register | Home</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static 'loginregister/css/style.css' %}>
+  </head>
+  <body>
+    <form action="/validate" method="POST">
+    {% csrf_token %}
+      <h2>Registration</h2>
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name">
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+      <label for="confirm">Confirm Password:</label>
+      <input type="password" id="confirm" name="confirm">
+      <button type="submit" name="button" value="register">Register</button>
+    </form>
+    <form action="/verify" method="POST">
+    {% csrf_token %}
+      <h2>Login</h2>
+      <label for="log_email">Email:</label>
+      <input type="text" id="log_email" name="log_email">
+      <label for="log_password">Password:</label>
+      <input type="password" id="log_password" name="log_password">
+      <button type="submit" name="button" value="login">Login</button>
+    </form>
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  </body>
+</html>
